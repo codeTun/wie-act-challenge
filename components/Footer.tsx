@@ -12,7 +12,7 @@ export function Footer() {
           <div className="space-y-4">
             <h3 className="text-xl font-bold">About Us</h3>
             <p className="text-indigo-200">
-              We are a company dedicated to providing innovative solutions for modern challenges.
+            Dedicated to empowering women with cybersecurity knowledge and protection.
             </p>
           </div>
           <div className="space-y-4">
@@ -25,30 +25,31 @@ export function Footer() {
             </ul>
           </div>
           <div className="space-y-4">
-            <h3 className="text-xl font-bold">Newsletter</h3>
-            <p className="text-indigo-200">Stay updated with our latest news and offers.</p>
+            <h3 className="text-xl font-bold">Your Feedback</h3>
+            <p className="text-indigo-200">Feel free to share your feedback, your input is always appreciated!</p>
             <form className="flex space-x-2">
               <Input 
-                type="email" 
-                placeholder="Enter your email" 
+                type="Feedback
+                " 
+                placeholder="Enter your opinion" 
                 className="bg-indigo-600 text-white placeholder-indigo-300 border-indigo-500 focus:border-indigo-400"
               />
               <Button type="submit" variant="secondary" className="bg-indigo-500 hover:bg-indigo-400 text-white">
-                Subscribe
+              Submit
               </Button>
             </form>
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-indigo-600">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-indigo-300 text-sm">© 2023 Your Company. All rights reserved.</p>
+            <p className="text-indigo-300 text-sm">© 2023 WIE Cybersecurity Initiative. All rights reserved.</p>
             <div className="flex space-x-4 mt-4 md:mt-0">
-              <a href="#" className="text-indigo-300 hover:text-white transition-colors">
+              <a href="https://www.facebook.com/IEEEWIEISIMMSA" className="text-indigo-300 hover:text-white transition-colors">
                 <Facebook size={20} />
                 <span className="sr-only">Facebook</span>
               </a>
               
-              <a href="#" className="text-indigo-300 hover:text-white transition-colors">
+              <a href="https://www.instagram.com/ieee_wie_isimm_sag?igsh=MTQ0MzV2bWJrYXl2ZQ==" className="text-indigo-300 hover:text-white transition-colors">
                 <Instagram size={20} />
                 <span className="sr-only">Instagram</span>
               </a>
@@ -56,7 +57,7 @@ export function Footer() {
                 <Linkedin size={20} />
                 <span className="sr-only">LinkedIn</span>
               </a>
-              <a href="#" className="text-indigo-300 hover:text-white transition-colors">
+              <a href="sba-isimm-wie@ieee.org" className="text-indigo-300 hover:text-white transition-colors">
                 <Mail size={20} />
                 <span className="sr-only">Email</span>
               </a>
