@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Star, MessageCircle, ThumbsUp } from 'lucide-react'
+import { Star, ThumbsUp } from 'lucide-react'
 import Image from 'next/image'
 interface FeedbackCardProps {
   name: string
@@ -9,7 +9,7 @@ interface FeedbackCardProps {
   company: string
   feedback: string
   rating: number
-  likes: number
+  
 }
 
 const FeedbackCard: React.FC<FeedbackCardProps> = ({ name, role, company, feedback, rating, likes }) => (
@@ -42,13 +42,7 @@ const FeedbackCard: React.FC<FeedbackCardProps> = ({ name, role, company, feedba
         </div>
       </div>
     </div>
-    <div className="bg-gray-100 px-4 py-2 flex items-center justify-between text-xs">
-      <button className="text-indigo-600 hover:text-indigo-800 font-medium flex items-center">
-        <MessageCircle className="w-4 h-4 mr-1" />
-        Reply
-      </button>
-      <span className="text-gray-600">2 days ago</span>
-    </div>
+    
   </div>
 )
 
@@ -76,7 +70,15 @@ export function ClientFeedbackComponent() {
               company="TechCorp"
               feedback="This app has transformed our workflow. Highly recommended!"
               rating={5}
-              likes={42}
+              
+            />
+            <FeedbackCard
+              name="Alex Johnson"
+              role="Product Manager"
+              company="TechCorp"
+              feedback="The user experience is top-notch! It’s made my job so much easier and more efficient."
+              rating={5}
+              
             />
             <FeedbackCard
               name="Alex Johnson"
@@ -84,25 +86,17 @@ export function ClientFeedbackComponent() {
               company="TechCorp"
               feedback="This app has transformed our workflow. Highly recommended!"
               rating={5}
-              likes={42}
-            />
-            <FeedbackCard
-              name="Alex Johnson"
-              role="Product Manager"
-              company="TechCorp"
-              feedback="This app has transformed our workflow. Highly recommended!"
-              rating={5}
-              likes={42}
+              
             />
             
             <div className="hidden lg:block"></div>
             <FeedbackCard
               name="Sarah Lee"
-              role="Marketing Director"
+              role="CTO at FutureTech"
               company="CreativeCo"
-              feedback="Intuitive interface and powerful features. A game-changer!"
-              rating={4}
-              likes={38}
+              feedback="This application has exceeded our expectations. The integration capabilities are fantastic!"
+              rating={5}
+              
             />
             <div className="hidden sm:block lg:hidden"></div>
             <FeedbackCard
@@ -111,7 +105,7 @@ export function ClientFeedbackComponent() {
               company="InnovateTech"
               feedback="Exceptional support and constant improvements. Love it!"
               rating={5}
-              likes={51}
+             
             />
             <FeedbackCard
               name="Emily Davis"
@@ -119,7 +113,6 @@ export function ClientFeedbackComponent() {
               company="DesignHub"
               feedback="The user-centric approach is evident. Great job!"
               rating={5}
-              likes={47}
             />
             <div className="hidden lg:block"></div>
             <FeedbackCard
@@ -128,7 +121,6 @@ export function ClientFeedbackComponent() {
               company="NextGen Solutions"
               feedback="This tool has been crucial for our rapid growth. Thank you!"
               rating={5}
-              likes={55}
             />
           </div>
         </div>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { ChevronRight, ChevronLeft } from 'lucide-react'
+import { ChevronRight, ChevronLeft, Play } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 
 const cubeContent = [
@@ -64,9 +64,9 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              Elevate Your <br />
+              Next Step: <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-                Digital Experience
+              Digital Safety?
               </span>
             </motion.h1>
             <motion.p 
@@ -75,35 +75,36 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Unleash the power of innovation with our state-of-the-art platform.
+              Together, we can create a safer digital world for all women.
             </motion.p>
+
+            {/* Flexbox container to align both buttons on the same line */}
             <motion.div
+              className="flex space-x-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
+              {/* Get Started Button */}
               <Button size="lg" className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
                 Get Started Now
               </Button>
+
+              {/* Watch Video Button */}
+              <ElegantVideoButton />
             </motion.div>
           </div>
-          
+
           <div className="w-full lg:w-1/2 h-96 relative perspective-1000">
             <div 
-              className={`w-full h-full transform-style-3d transition-transform duration-500 ease-in-out ${
-                isRotating ? 'animate-rotate-y' : ''
-              }`}
-              style={{
-                transform: `rotateY(${currentIndex * -90}deg)`,
-              }}
+              className={`w-full h-full transform-style-3d transition-transform duration-500 ease-in-out ${isRotating ? 'animate-rotate-y' : ''}`}
+              style={{ transform: `rotateY(${currentIndex * -90}deg)` }}
             >
               {cubeContent.map((content, index) => (
                 <div
                   key={index}
                   className={`absolute inset-0 w-full h-full ${content.bgClass} rounded-2xl shadow-2xl flex items-center justify-center p-8 backface-hidden`}
-                  style={{
-                    transform: `rotateY(${index * 90}deg) translateZ(240px)`,
-                  }}
+                  style={{ transform: `rotateY(${index * 90}deg) translateZ(240px)` }}
                 >
                   <div className="text-center">
                     <h2 className="text-4xl font-bold text-white mb-4">{content.title}</h2>
@@ -116,24 +117,40 @@ export function HeroSection() {
         </div>
         
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4">
-          <Button
-            size="icon"
-            variant="outline"
-            className="text-white border-white hover:bg-white hover:text-gray-900"
-            onClick={rotateToPrev}
-          >
+          <Button size="icon" variant="outline" className="text-white border-white hover:bg-white hover:text-gray-900" onClick={rotateToPrev}>
             <ChevronLeft className="h-6 w-6" />
           </Button>
-          <Button
-            size="icon"
-            variant="outline"
-            className="text-white border-white hover:bg-white hover:text-gray-900"
-            onClick={rotateToNext}
-          >
+          <Button size="icon" variant="outline" className="text-white border-white hover:bg-white hover:text-gray-900" onClick={rotateToNext}>
             <ChevronRight className="h-6 w-6" />
           </Button>
         </div>
       </div>
     </div>
+  )
+}
+
+// ElegantVideoButton Component
+function ElegantVideoButton() {
+  const [isHovered, setIsHovered] = useState(false)
+
+  return (
+    <Button 
+      className={`bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold py-4 px-8 rounded-full
+        inline-flex items-center transition-all duration-300 ease-in-out
+        border-2 border-transparent hover:from-purple-600 hover:to-pink-600
+        shadow-lg hover:shadow-xl
+        ${isHovered ? 'pr-10' : 'pr-8'}
+      `}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className={`mr-3 w-8 h-8 rounded-full bg-white flex items-center justify-center transition-all duration-300 ease-in-out ${isHovered ? 'bg-black' : 'bg-white'}`}>
+        <Play className={`w-4 h-4 transition-all duration-300 ease-in-out ${isHovered ? 'text-white' : 'text-black'}`} />
+      </div>
+      <span className="text-lg">Watch Video</span>
+      <span className={`ml-2 transition-all duration-300 ${isHovered ? 'opacity-100 translate-x-1' : 'opacity-0 -translate-x-1'}`}>
+        →
+      </span>
+    </Button>
   )
 }
