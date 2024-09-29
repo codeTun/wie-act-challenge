@@ -2,7 +2,7 @@ import { ClientFeedbackComponent } from "@/components/Clientfeedback";
 import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/Herosection";
 import { Navbar } from "@/components/navbar";
-
+import { Contact } from "@/components/Contact";
 export default function Home() {
   return (
     <>
@@ -10,6 +10,7 @@ export default function Home() {
       <HeroSection />
       <ClientFeedbackComponent />
       <Footer />
+      <Contact />
     </>
   );
 }
