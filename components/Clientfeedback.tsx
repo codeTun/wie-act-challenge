@@ -1,18 +1,17 @@
-'use client'
-
-import React from 'react'
-import { Star, ThumbsUp } from 'lucide-react'
-import Image from 'next/image'
+"use client";
+import React from "react";
+import { Star } from "lucide-react";
 interface FeedbackCardProps {
-  name: string
-  role: string
-  company: string
-  feedback: string
-  rating: number
-  
+  name: string;
+  feedback: string;
+  rating: number;
 }
 
-const FeedbackCard: React.FC<FeedbackCardProps> = ({ name, role, company, feedback, rating, likes }) => (
+const FeedbackCard: React.FC<FeedbackCardProps> = ({
+  name,
+  feedback,
+  rating,
+}) => (
   <div className="bg-white rounded-lg shadow-xl overflow-hidden transform transition duration-500 hover:scale-105">
     <div className="p-4">
       <div className="flex items-center mb-2">
@@ -21,7 +20,6 @@ const FeedbackCard: React.FC<FeedbackCardProps> = ({ name, role, company, feedba
         </div>
         <div className="ml-3">
           <h3 className="font-semibold text-base">{name}</h3>
-          <p className="text-xs text-gray-600">{role} at {company}</p>
         </div>
       </div>
       <p className="text-sm text-gray-700 mb-2">{feedback}</p>
@@ -31,20 +29,15 @@ const FeedbackCard: React.FC<FeedbackCardProps> = ({ name, role, company, feedba
             <Star
               key={i}
               className={`w-4 h-4 ${
-                i < rating ? 'text-yellow-400 fill-current' : 'text-gray-300'
+                i < rating ? "text-yellow-400 fill-current" : "text-gray-300"
               }`}
             />
           ))}
         </div>
-        <div className="flex items-center text-gray-600 text-xs">
-          <ThumbsUp className="w-4 h-4 mr-1" />
-          <span>{likes}</span>
-        </div>
       </div>
     </div>
-    
   </div>
-)
+);
 
 export function ClientFeedbackComponent() {
   return (
@@ -66,59 +59,40 @@ export function ClientFeedbackComponent() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-center">
             <FeedbackCard
               name="Alex Johnson"
-              role="Product Manager"
-              company="TechCorp"
               feedback="This app has transformed our workflow. Highly recommended!"
               rating={5}
-              
             />
             <FeedbackCard
               name="Alex Johnson"
-              role="Product Manager"
-              company="TechCorp"
-              feedback="The user experience is top-notch! It’s made my job so much easier and more efficient."
+              feedback="This app has transformed our workflow. Highly recommended!"
               rating={5}
-              
             />
             <FeedbackCard
               name="Alex Johnson"
-              role="Product Manager"
-              company="TechCorp"
               feedback="This app has transformed our workflow. Highly recommended!"
               rating={5}
-              
             />
-            
+
             <div className="hidden lg:block"></div>
             <FeedbackCard
               name="Sarah Lee"
-              role="CTO at FutureTech"
-              company="CreativeCo"
-              feedback="This application has exceeded our expectations. The integration capabilities are fantastic!"
-              rating={5}
-              
+              feedback="Intuitive interface and powerful features. A game-changer!"
+              rating={4}
             />
             <div className="hidden sm:block lg:hidden"></div>
             <FeedbackCard
               name="Michael Chen"
-              role="CTO"
-              company="InnovateTech"
               feedback="Exceptional support and constant improvements. Love it!"
               rating={5}
-             
             />
             <FeedbackCard
               name="Emily Davis"
-              role="UX Designer"
-              company="DesignHub"
               feedback="The user-centric approach is evident. Great job!"
               rating={5}
             />
             <div className="hidden lg:block"></div>
             <FeedbackCard
               name="David Wilson"
-              role="Startup Founder"
-              company="NextGen Solutions"
               feedback="This tool has been crucial for our rapid growth. Thank you!"
               rating={5}
             />
@@ -126,5 +100,5 @@ export function ClientFeedbackComponent() {
         </div>
       </div>
     </section>
-  )
+  );
 }
