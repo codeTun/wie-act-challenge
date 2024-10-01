@@ -8,10 +8,10 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="bg-gradient-to-t from-indigo-900 via-indigo-800 to-indigo-700  shadow-xl rounded-lg overflow-hidden">
+        <div className="bg-gradient-to-t from-purple-600 to-pink-500  shadow-xl rounded-lg overflow-hidden">
           <div className="lg:flex">
             {/* Left side - Contact Information */}
-            <div className="lg:w-1/2 bg-gradient-to-t from-indigo-900 via-indigo-800 to-indigo-700 p-8 lg:p-12">
+            <div className="lg:w-1/2 bg-gradient-to-t from-purple-600 to-pink-500 p-8 lg:p-12">
               <h1 className="text-3xl font-bold text-white mb-6">Get in touch</h1>
               <p className="text-white mb-8">
                 Our pursuit of excellence extends to building strong relationships and meaningful
@@ -61,7 +61,7 @@ export default function ContactPage() {
                   <Textarea id="message" name="message" rows={4} required className="mt-1" />
                 </div>
                 <div>
-                  <Button type="submit" className="w-full bg-indigo-500 hover:bg-indigo-400" >Send Message</Button>
+                  <Button type="submit" className="w-full bg-indigo-700 hover:bg-indigo-600" >Send Message</Button>
                 </div>
               </form>
             </div>
