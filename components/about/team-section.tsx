@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Twitter } from 'lucide-react'
+import { Github, Linkedin } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import {
@@ -16,7 +16,6 @@ import {
 
 // Define the types for the team members
 interface SocialLinks {
-  twitter: string;
   linkedin: string;
   github: string;
 }
@@ -31,89 +30,81 @@ interface TeamMember {
 
 const teamMembers: TeamMember[] = [
   {
-    name: "Alex Johnson",
+    name: "Iheb Elazheri",
     role: "Founder & CEO",
     image: "/placeholder.svg?height=400&width=400",
     bio: "Alex is a visionary leader with over 15 years of experience in tech innovation. She founded our club with the mission to empower the next generation of tech enthusiasts.",
     social: {
-      twitter: "https://twitter.com/alexjohnson",
       linkedin: "https://linkedin.com/in/alexjohnson",
       github: "https://github.com/alexjohnson"
     }
   },
   {
-    name: "Sam Lee",
+    name: "Hamza Haj Mtir",
     role: "CTO",
-    image: "/placeholder.svg?height=400&width=400",
+    image: "/hamza.jpg?height=400&width=400",
     bio: "Sam is a brilliant technologist with a passion for cutting-edge development. He leads our technical initiatives and mentors members in advanced programming concepts.",
     social: {
-      twitter: "https://twitter.com/samlee",
       linkedin: "https://linkedin.com/in/samlee",
       github: "https://github.com/samlee"
     }
   },
   {
-    name: "Emily Chen",
+    name: "Taieb Ben Slama",
     role: "Head of Education",
     image: "/placeholder.svg?height=400&width=400",
     bio: "Emily is an experienced educator with a knack for making complex topics accessible. She designs our learning programs and workshops.",
     social: {
-      twitter: "https://twitter.com/emilychen",
       linkedin: "https://linkedin.com/in/emilychen",
       github: "https://github.com/emilychen"
     }
   },
   {
-    name: "Michael Brown",
+    name: "Hamis Maaroufi",
     role: "Community Manager",
     image: "/placeholder.svg?height=400&width=400",
     bio: "Michael is the heart of our community. He organizes events, facilitates member interactions, and ensures everyone feels welcome and engaged.",
     social: {
-      twitter: "https://twitter.com/michaelbrown",
       linkedin: "https://linkedin.com/in/michaelbrown",
       github: "https://github.com/michaelbrown"
     }
   },
   {
-    name: "Sarah Kim",
+    name: "Yassine",
     role: "UX/UI Lead",
     image: "/placeholder.svg?height=400&width=400",
     bio: "Sarah brings creativity and user-centric design to all our projects. She leads workshops on design thinking and user experience.",
     social: {
-      twitter: "https://twitter.com/sarahkim",
       linkedin: "https://linkedin.com/in/sarahkim",
       github: "https://github.com/sarahkim"
     }
   },
   {
-    name: "David Patel",
+    name: "Omar branci",
     role: "Data Science Expert",
     image: "/placeholder.svg?height=400&width=400",
     bio: "David is our go-to person for all things data. He leads our machine learning projects and teaches data analysis techniques.",
     social: {
-      twitter: "https://twitter.com/davidpatel",
       linkedin: "https://linkedin.com/in/davidpatel",
       github: "https://github.com/davidpatel"
     }
   },
   {
-    name: "Lisa Wong",
+    name: "Aziz Ferchichi",
     role: "AR/VR Specialist",
     image: "/placeholder.svg?height=400&width=400",
     bio: "Lisa is passionate about immersive technologies. She guides our AR/VR initiatives and helps members explore the world of extended reality.",
     social: {
-      twitter: "https://twitter.com/lisawong",
       linkedin: "https://linkedin.com/in/lisawong",
       github: "https://github.com/lisawong"
     }
   },
   {
-    name: "James Taylor",
+    name: "Youssef Bessioud",
     role: "Cybersecurity Lead",
     image: "/placeholder.svg?height=400&width=400",
     bio: "James ensures that security is at the forefront of all our projects. He educates members on best practices in cybersecurity and ethical hacking.",
     social: {
-      twitter: "https://twitter.com/jamestaylor",
       linkedin: "https://linkedin.com/in/jamestaylor",
       github: "https://github.com/jamestaylor"
     }
@@ -156,7 +147,7 @@ export function TeamSectionComponent() {
                     className="w-full h-48 object-cover object-center"
                   />
                   <div className="p-4">
-                    <h3 className="text-lg font-semibold mb-1">{member.name}</h3>
+                    <h3 className="text-lg font-semibold mb-1 text-white">{member.name}</h3>
                     <p className="text-sm text-gray-400 mb-3">{member.role}</p>
                     <Dialog>
                       <DialogTrigger asChild>
@@ -189,14 +180,6 @@ export function TeamSectionComponent() {
                 <div className="mt-4">
                   <p className="text-gray-300">{selectedMember.bio}</p>
                   <div className="flex mt-4 space-x-4">
-                    <a
-                      href={selectedMember.social.twitter}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-400 hover:text-blue-300"
-                    >
-                      <Twitter className="w-5 h-5" />
-                    </a>
                     <a
                       href={selectedMember.social.linkedin}
                       target="_blank"
