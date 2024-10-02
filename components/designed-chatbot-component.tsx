@@ -1,6 +1,5 @@
 "use client";
-
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -13,7 +12,8 @@ type Message = {
   sender: "user" | "bot";
 };
 
-export default function () {
+
+const ChatbotComponent: React.FC = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState("");
@@ -160,4 +160,6 @@ export default function () {
       )}
     </div>
   );
-}
+};
+
+export default ChatbotComponent;
