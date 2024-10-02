@@ -25,8 +25,8 @@ const teamMembers = [
     name: "Taieb Ben Slama",
     role: "Dev Team Member",
     image: "/taib.png",
-    linkedin: "https://linkedin.com",
-    github: "https://github.com"
+    linkedin: "https://www.linkedin.com/in/ben-slama-taieb-b4255b243/",
+    github: "https://github.com/TaiebBS"
   },
   {
     name: "Hamis Maaroufi",
@@ -59,7 +59,7 @@ const teamMembers = [
   {
     name: "Youssef Bessioud",
     role: "Dev Team Member",
-    image: "",
+    image: "/youssef.jpg",
     linkedin: "https://linkedin.com",
     github: "https://github.com"
   }
