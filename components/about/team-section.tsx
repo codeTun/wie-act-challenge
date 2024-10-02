@@ -2,61 +2,63 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Linkedin, Github } from 'lucide-react'
+import { Linkedin, Github, Globe } from 'lucide-react'
 
 const teamMembers = [
-{
+  {
     name: "Iheb Elazheri",
-    role: "Founder & CEO",
+    role: "Leader & Dev Team Member",
     image: "/iheb.jpg",
     linkedin: "https://www.linkedin.com/in/codetun/",
-    github: "https://github.com/codeTun"
+    github: "https://github.com/codeTun",
+    portfolio: "https://digitaldreams.tn/"
   },
   {
     name: "Hamza Haj Mtir",
-    role: "CTO",
+    role: "Assistant Leader & Dev Team Member",
     image: "/hamza.jpg",
     linkedin: "https://www.linkedin.com/in/hamza-haj-mtir-3345a8220/",
-    github: "https://github.com/HamzaHajMtir1"
+    github: "https://github.com/HamzaHajMtir1",
+    portfolio: "https://www.hamzahajmtir.tn/"
   },
   {
     name: "Taieb Ben Slama",
-    role: "Head of Education",
-    image: "",
+    role: "Dev Team Member",
+    image: "/taib.png",
     linkedin: "https://linkedin.com",
     github: "https://github.com"
   },
   {
     name: "Hamis Maaroufi",
-    role: "Community Manager",
-    image: "/hamis.png?height=400&width=400",
-    linkedin: "https://linkedin.com",
+    role: "Dev Team Member",
+    image: "/hamis.png",
+    linkedin: "https://www.linkedin.com/in/hamis-maaroufi-314747307/",
     github: "https://github.com/Hamis1211"
   },
   {
-    name: "Yassine",
-    role: "UX/UI Lead",
+    name: "Yassine Ahmed",
+    role: "Dev Team Member",
     image: "",
     linkedin: "https://linkedin.com",
     github: "https://github.com"
   },
   {
     name: "Omar branci",
-    role: "Data Science Expert",
+    role: "Dev Team Member",
     image: "",
     linkedin: "https://linkedin.com",
     github: "https://github.com"
   },
   {
     name: "Aziz Ferchichi",
-    role: "AR/VR Specialist",
+    role: "Dev Team Member",
     image: "",
     linkedin: "https://linkedin.com",
     github: "https://github.com"
   },
   {
     name: "Youssef Bessioud",
-    role: "Cybersecurity Lead",
+    role: "Dev Team Member",
     image: "",
     linkedin: "https://linkedin.com",
     github: "https://github.com"
@@ -107,6 +109,11 @@ export function TeamSectionComponent() {
                   <a href={member.github} className="text-gray-300 hover:text-purple-400 transition-colors">
                     <Github className="w-5 h-5" />
                   </a>
+                  {member.portfolio && (
+                    <a href={member.portfolio} className="text-gray-300 hover:text-purple-400 transition-colors">
+                      <Globe className="w-5 h-5" />
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>
