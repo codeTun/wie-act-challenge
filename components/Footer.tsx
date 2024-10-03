@@ -42,7 +42,7 @@ export function Footer() {
         </div>
         <div className="mt-8 pt-8 border-t border-indigo-600">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-indigo-300 text-sm">© 2023 WIE Cybersecurity Initiative. All rights reserved.</p>
+            <p className="text-indigo-300 text-sm">© 2024 WIE Cybersecurity Initiative. All rights reserved.</p>
             <div className="flex space-x-4 mt-4 md:mt-0">
               <a href="https://www.facebook.com/IEEEWIEISIMMSA" className="text-indigo-300 hover:text-white transition-colors">
                 <Facebook size={20} />
