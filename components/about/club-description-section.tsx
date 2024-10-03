@@ -11,23 +11,23 @@ import Link from 'next/link'
 const clubFeatures = [
   {
     icon: <Users className="w-6 h-6 text-purple-400" />,
-    title: "Collaborative Community",
-    description: "Join a vibrant network of tech enthusiasts, developers, and innovators."
+    title: "Inclusive Collaboration",
+    description: "Build a diverse community where women develop innovative solutions to global challenges."
   },
   {
     icon: <Code className="w-6 h-6 text-pink-400" />,
-    title: "Hands-on Workshops",
-    description: "Participate in regular coding sessions and practical tech workshops."
+    title: "Empower Women in Tech",
+    description: "Lead initiatives to enable women to excel in engineering and technology."
   },
   {
     icon: <Lightbulb className="w-6 h-6 text-yellow-400" />,
-    title: "Innovative Projects",
-    description: "Work on cutting-edge projects that push the boundaries of technology."
+    title: "Address Digital Safety",
+    description: "Tackle issues like online harassment, digital security, and privacy through technology."
   },
   {
     icon: <Zap className="w-6 h-6 text-blue-400" />,
-    title: "Skill Acceleration",
-    description: "Rapidly improve your skills through challenges and peer learning."
+    title: "Skills for the Future",
+    description: "Equip women with expertise in AI, IoT, and 4IR technologies for a safer, inclusive digital world."
   }
 ]
 
@@ -62,10 +62,10 @@ export function ClubDescriptionSectionComponent() {
               <CardContent className="p-6">
                 <h3 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-purple-400 to-pink-600">About Our IEEE WIE ISIMM Student Affinity group </h3>
                 <p className="text-gray-300 mb-4">
-                Step into a world of empowerment with IEEE WIE Affinity Group! We re on a mission to ignite possibilities for women in engineering and technology. Explore our vibrant initiative, WIEmpower Her, designed to uplift girls in rural areas, nurturing their journey into STEM education.
-                </p>
-                <p className="text-gray-300 mb-4">
-                Dive into our digital magazine, your gateway to a realm of tech updates, opportunities, and educational treasures. Let s unite in creating an inclusive and boundless STEM community, together shaping a brighter future.
+                  We are a passionate community committed to empowering women in engineering and technology.
+                  Our mission is to foster inclusion, innovation, and leadership, providing women with the tools, opportunities, and support to thrive in AI, IoT, 4IR, and other cutting-edge fields. As online harassment becomes a growing challenge, it’s our turn to make an impact.
+                  Through our solutions, we aim to help individuals protect their digital spaces and ensure safer online experiences.
+                  Our goal is to inspire the next generation of female engineers, breaking down barriers and promoting a future where diversity and safety drive innovation.
                 </p>
                 <Link href="https://www.facebook.com/IEEEWIEISIMMSA" passHref >
                   <Button  className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105">

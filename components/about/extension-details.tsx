@@ -5,11 +5,12 @@ import Image from "next/image";
 import { CheckCircleIcon } from "@heroicons/react/20/solid";
 
 const benefits = [
-  "good",
-  "nice",
-  "hello",
-  "good morning",
-  "co co",
+  "Protects privacy and security",
+  "Fosters safe online communities",
+  "Empowers users with AI-driven solutions",
+  "Prevents online abuse and harassment",
+  "Encourages freedom of expression",
+  "Supports diverse participation in digital spaces",
 ];
 
 const ExtensionDetails = () => {
@@ -24,16 +25,15 @@ const ExtensionDetails = () => {
             height={500}
             width={500}
             className="h-96 w-full flex-none rounded-2xl object-cover shadow-xl lg:aspect-square lg:h-auto lg:max-w-sm"
-            src="/feedbacks.jpg"
+            src="/feedbacks.jpg" // Update this with the relevant image
             alt="Reasons picture."
           />
           <div className="w-full flex-auto">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Reasons to download our extension
+              Reasons to focus on Online Harassment
             </h2>
             <p className="mt-6 text-lg leading-8 text-gray-300">
-              We believe in the power of expert answers, outstanding support, and reliable, easy-to-use solutions.
-              Our dedicated team is committed to delivering the highest quality products and services to meet the diverse needs of our customers.
+              We chose to focus on online harassment because it is one of the most critical challenges faced by individuals, particularly women, in today&apos;s digital world.
             </p>
             <ul
               role="list"

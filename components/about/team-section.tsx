@@ -45,15 +45,15 @@ const teamMembers = [
   {
     name: "Omar branci",
     role: "Dev Team Member",
-    image: "",
-    linkedin: "https://linkedin.com",
-    github: "https://github.com"
+    image: "/omar.PNG",
+    linkedin: "https://www.linkedin.com/in/mohamed-omar-branci-604765257",
+    github: "https://github.com/OmarBranci"
   },
   {
     name: "Aziz Ferchichi",
     role: "Dev Team Member",
     image: "",
-    linkedin: "https://linkedin.com",
+    linkedin: "https://www.linkedin.com/in/aziz-ferchichi-499742218/",
     github: "https://github.com"
   },
   {
