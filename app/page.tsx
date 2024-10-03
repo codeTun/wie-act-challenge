@@ -2,8 +2,9 @@ import { ClientFeedbackComponent } from "@/components/Clientfeedback";
 import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/Herosection";
 import { Navbar } from "@/components/Navbar";
+import Contact from "@/components/Contact";
+import Feedback from '@/components/feedback';
 import ChatbotComponent from "@/components/designed-chatbot-component";
-
 export default function Home() {
   return (
     <>
@@ -11,6 +12,8 @@ export default function Home() {
       <HeroSection />
       <ClientFeedbackComponent />
       <ChatbotComponent />
+      <Feedback />
+      <Contact />
       <Footer />
     </>
   );
