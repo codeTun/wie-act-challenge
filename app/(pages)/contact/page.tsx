@@ -1,10 +1,13 @@
 import { Navbar } from "@/components/Navbar";
+import ContactPage from "@/components/Contact";
+import { Footer } from "@/components/Footer";
 
 export default function Contact() {
   return (
     <>
       <Navbar />
-      <h1>contact Page</h1>
+      <ContactPage />
+      <Footer />
     </>
   );
 }
