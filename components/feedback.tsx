@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, FormEvent } from 'react'
+import React, { useState } from 'react'
 import { MessageCircle, Star } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import {
@@ -15,14 +15,14 @@ import {
 import { Input } from "@/components/ui/input"
 import Label from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { useToast } from "@/components/ui/use-toast"
+// import { useToast } from "@/components/ui/use-toast"
 
 // Mock function for submitFeedback
-const submitFeedback = async (formData: FormData) => {
-  // Simulating an API call
-  await new Promise(resolve => setTimeout(resolve, 1000))
-  return { success: true, message: "Feedback submitted successfully!" }
-}
+// const submitFeedback = async () => {
+//   // Simulating an API call
+//   await new Promise(resolve => setTimeout(resolve, 1000))
+//   return { success: true, message: "Feedback submitted successfully!" }
+// }
 
 interface StarRatingProps {
   rating: number
@@ -54,30 +54,30 @@ function SubmitButton() {
 export default function Feedback() {
   const [open, setOpen] = useState(false)
   const [rating, setRating] = useState<number>(0)
-  const { toast } = useToast()
+  // const { toast } = useToast()
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    formData.append('rating', rating.toString())
+  // const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault()
+  //   const formData = new FormData(e.currentTarget)
+  //   formData.append('rating', rating.toString())
     
-    const response = await submitFeedback(formData)
+  //   const response = await submitFeedback(formData)
 
-    if (response.success) {
-      toast({
-        title: "Success",
-        description: response.message,
-      })
-      setOpen(false)
-      setRating(0)
-    } else {
-      toast({
-        title: "Error",
-        description: response.message,
-        variant: "destructive",
-      })
-    }
-  }
+  //   if (response.success) {
+  //     toast({
+  //       title: "Success",
+  //       description: response.message,
+  //     })
+  //     setOpen(false)
+  //     setRating(0)
+  //   } else {
+  //     toast({
+  //       title: "Error",
+  //       description: response.message,
+  //       variant: "destructive",
+  //     })
+  //   }
+  // }
 
   return (
     <div className="bg-gray-900 min-h-screen flex justify-center items-center"> {/* Ensure full screen bg color */}
@@ -92,10 +92,10 @@ export default function Feedback() {
           <DialogHeader>
             <DialogTitle>Send feedback</DialogTitle>
             <DialogDescription>
-              We'd love to hear your thoughts! Please fill out this form to send us your feedback.
+              We`&apos;`d love to hear your thoughts! Please fill out this form to send us your feedback.
             </DialogDescription>
           </DialogHeader>
-          <form onSubmit={handleSubmit}>
+          <form >
             <div className="grid gap-4 py-4">
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="name" className="col-span-1">Name</Label>
