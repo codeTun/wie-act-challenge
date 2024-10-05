@@ -1,8 +1,8 @@
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 import Label from "@/components/ui/label";
-import { Phone, MapPin, Mail } from "lucide-react"
+import { Phone, MapPin, Mail } from "lucide-react";
 
 export default function ContactPage() {
   return (
@@ -10,12 +10,14 @@ export default function ContactPage() {
       <div className="max-w-7xl mx-auto">
         <div className="bg-gradient-to-t from-purple-700 to-pink-600 shadow-lg rounded-xl overflow-hidden">
           <div className="lg:flex">
+
           
             <div className="lg:w-1/2 bg-gradient-to-t from-purple-800 to-pink-700 p-10 lg:p-14 space-y-8">
               <h1 className="text-4xl font-extrabold text-white mb-6">Get in touch</h1>
               <p className="text-lg text-white mb-8">
                 We are here to build strong relationships and meaningful interactions. 
                 Have a question or need help? Feel free to reach out!
+
               </p>
               <div className="space-y-6">
                 <div className="flex items-center space-x-4 text-white">
@@ -32,6 +34,7 @@ export default function ContactPage() {
                 </div>
               </div>
             </div>
+
 
             <div className="lg:w-1/2 bg-white p-10 lg:p-14 space-y-8">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Send us a message</h2>
@@ -60,6 +63,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-500 text-white py-3 rounded-lg font-semibold text-lg shadow-md hover:shadow-lg transition duration-300">Send Message</Button>
+
                 </div>
               </form>
             </div>
@@ -67,5 +71,7 @@ export default function ContactPage() {
         </div>
       </div>
     </div>
+
   )
+
 }

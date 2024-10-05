@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, FormEvent } from 'react'
+import React, { useState } from 'react'
 import { MessageCircle, Star } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import {
@@ -15,13 +15,15 @@ import {
 import { Input } from "@/components/ui/input"
 import Label from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { useToast } from "@/components/ui/use-toast"
+// import { useToast } from "@/components/ui/use-toast"
 
 // Mock function for submitFeedback
+
 const submitFeedback = async (formData: FormData) => {
   await new Promise(resolve => setTimeout(resolve, 1000))
   return { success: true, message: "Feedback submitted successfully!" }
 }
+
 
 interface StarRatingProps {
   rating: number
@@ -55,6 +57,7 @@ function SubmitButton({ isLoading }: { isLoading: boolean }) {
 export default function Feedback() {
   const [open, setOpen] = useState(false)
   const [rating, setRating] = useState<number>(0)
+
   const [isLoading, setIsLoading] = useState(false)
   const { toast } = useToast()
 
@@ -96,10 +99,10 @@ export default function Feedback() {
           <DialogHeader>
             <DialogTitle>Send feedback</DialogTitle>
             <DialogDescription>
-              We'd love to hear your thoughts! Please fill out this form to send us your feedback.
+              We`&apos;`d love to hear your thoughts! Please fill out this form to send us your feedback.
             </DialogDescription>
           </DialogHeader>
-          <form onSubmit={handleSubmit}>
+          <form >
             <div className="grid gap-4 py-4">
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="name" className="col-span-1">Name</Label>
