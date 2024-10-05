@@ -1,16 +1,19 @@
 "use client";
-import React from "react";
-import { Star } from "lucide-react";
 
+import React, { useEffect, useState } from "react";
+import { Star } from "lucide-react";
+import { fetchFeedbacks } from "../model/FetchFeedbacks"; // Adjust the path if necessary
+
+// Feedback card component
 interface FeedbackCardProps {
   name: string;
-  feedback: string;
+  message: string;
   rating: number;
 }
 
 const FeedbackCard: React.FC<FeedbackCardProps> = ({
   name,
-  feedback,
+  message,
   rating,
 }) => (
   <div className="bg-white rounded-lg shadow-xl overflow-hidden transform transition duration-500 hover:scale-105">
@@ -23,52 +26,73 @@ const FeedbackCard: React.FC<FeedbackCardProps> = ({
           <h3 className="font-semibold text-base">{name}</h3>
         </div>
       </div>
-      <p className="text-sm text-gray-700 mb-2">{feedback}</p>
-      <div className="flex items-center">
-        {[...Array(5)].map((_, i) => (
-          <Star
-            key={i}
-            aria-label={`${i < rating ? "Filled" : "Empty"} star`}
-            className={`w-4 h-4 ${
-              i < rating ? "text-yellow-400 fill-current" : "text-gray-300"
-            }`}
-          />
-        ))}
+      <p className="text-sm text-gray-700 mb-2">{message}</p>
+      <div className="flex items-center justify-between">
+        <div className="flex">
+          {[...Array(5)].map((_, i) => (
+            <Star
+              key={i}
+              className={`w-4 h-4 ${
+                i < rating ? "text-yellow-400 fill-current" : "text-gray-300"
+              }`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   </div>
 );
 
 export function ClientFeedbackComponent() {
+  const [feedbacks, setFeedbacks] = useState<FeedbackCardProps[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  // Fetch feedbacks on component mount
+  useEffect(() => {
+    const getFeedbacks = async () => {
+      try {
+        const data = await fetchFeedbacks(); // Fetch feedbacks from the server
+
+        // Map the server data to match the FeedbackCardProps structure
+        const mappedFeedbacks = data.map((feedback) => ({
+          name: feedback.name,
+          message: feedback.message, // Map 'message' to 'feedback'
+          rating: feedback.stars, // Map 'stars' to 'rating'
+        }));
+
+        setFeedbacks(mappedFeedbacks); // Set the mapped feedbacks to state
+      } catch (error) {
+        console.error("Error fetching feedbacks:", error);
+      } finally {
+        setLoading(false); // Stop loading once data is fetched
+      }
+    };
+
+    getFeedbacks();
+  }, []);
+
+  if (loading) {
+    return <div className="text-center text-white">Loading feedbacks...</div>;
+  }
+
   return (
     <section className="bg-gray-900 py-16 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-center">
-          <FeedbackCard
-            name="Alex Johnson"
-            feedback="This app has transformed our workflow. Highly recommended!"
-            rating={5}
-          />
-          <FeedbackCard
-            name="Sarah Lee"
-            feedback="Intuitive interface and powerful features. A game-changer!"
-            rating={4}
-          />
-          <FeedbackCard
-            name="Michael Chen"
-            feedback="Exceptional support and constant improvements. Love it!"
-            rating={5}
-          />
-          <FeedbackCard
-            name="Emily Davis"
-            feedback="The user-centric approach is evident. Great job!"
-            rating={5}
-          />
-          <FeedbackCard
-            name="David Wilson"
-            feedback="This tool has been crucial for our rapid growth. Thank you!"
-            rating={5}
-          />
+          {feedbacks.length > 0 ? (
+            feedbacks.map((feedback, index) => (
+              <FeedbackCard
+                key={index}
+                name={feedback.name}
+                message={feedback.message}
+                rating={feedback.rating}
+              />
+            ))
+          ) : (
+            <div className="text-white text-center col-span-full">
+              No feedbacks available.
+            </div>
+          )}
         </div>
       </div>
     </section>
