@@ -19,10 +19,10 @@ import { Textarea } from "@/components/ui/textarea"
 
 // Mock function for submitFeedback
 
-const submitFeedback = async (formData: FormData) => {
-  await new Promise(resolve => setTimeout(resolve, 1000))
-  return { success: true, message: "Feedback submitted successfully!" }
-}
+// const submitFeedback = async () => {
+//   await new Promise(resolve => setTimeout(resolve, 1000))
+//   return { success: true, message: "Feedback submitted successfully!" }
+// }
 
 
 interface StarRatingProps {
@@ -58,33 +58,33 @@ export default function Feedback() {
   const [open, setOpen] = useState(false)
   const [rating, setRating] = useState<number>(0)
 
-  const [isLoading, setIsLoading] = useState(false)
-  const { toast } = useToast()
+  // const [isLoading, setIsLoading] = useState(false)
+  // const { toast } = useToast()
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    formData.append('rating', rating.toString())
+  // const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault()
+  //   const formData = new FormData(e.currentTarget)
+  //   formData.append('rating', rating.toString())
 
-    setIsLoading(true)
-    const response = await submitFeedback(formData)
-    setIsLoading(false)
+  //   setIsLoading(true)
+  //   const response = await submitFeedback(formData)
+  //   setIsLoading(false)
 
-    if (response.success) {
-      toast({
-        title: "Success",
-        description: response.message,
-      })
-      setOpen(false) 
-      setRating(0)
-    } else {
-      toast({
-        title: "Error",
-        description: response.message,
-        variant: "destructive",
-      })
-    }
-  }
+  //   if (response.success) {
+  //     toast({
+  //       title: "Success",
+  //       description: response.message,
+  //     })
+  //     setOpen(false) 
+  //     setRating(0)
+  //   } else {
+  //     toast({
+  //       title: "Error",
+  //       description: response.message,
+  //       variant: "destructive",
+  //     })
+  //   }
+  // }
 
   return (
     <div className="bg-gray-900 min-h-screen flex justify-center items-center">
@@ -115,7 +115,7 @@ export default function Feedback() {
               <StarRating rating={rating} setRating={setRating} />
             </div>
             <DialogFooter className="flex justify-center">
-              <SubmitButton isLoading={isLoading} />
+              <SubmitButton isLoading={true} />
             </DialogFooter>
           </form>
         </DialogContent>
