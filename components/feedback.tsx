@@ -72,7 +72,7 @@ export default function Feedback() {
         title: "Success",
         description: response.message,
       })
-      setOpen(false) // Only close the dialog here after successful submission
+      setOpen(false) 
       setRating(0)
     } else {
       toast({

@@ -3,14 +3,14 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Play } from "lucide-react"; // Ensure you're importing Play from lucide-react
-import { X } from "lucide-react"; // Import close icon for the modal
+import { Play } from "lucide-react";
+import { X } from "lucide-react"; 
 
 const cubeContent = [
   {
     title: "Innovate",
     description: "Push boundaries with cutting-edge solutions",
-    imageUrl: "image1.jpg", // Add your image paths
+    imageUrl: "image1.jpg", 
   },
   {
     title: "Create",
@@ -31,7 +31,7 @@ const cubeContent = [
 
 export default function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false); // State to control video modal
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -46,10 +46,10 @@ export default function HeroSection() {
 
   return (
     <div className="relative min-h-screen flex bg-gradient-to-br from-purple-800 to-pink-900 bg-fixed">
-      {/* Background Overlay */}
+
       <div className="absolute inset-0 bg-black opacity-50" />
 
-      {/* Rotating Images */}
+
       <div className="relative w-full flex-1 overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
@@ -75,7 +75,6 @@ export default function HeroSection() {
         </AnimatePresence>
       </div>
 
-      {/* Fixed Left Side */}
       <div className="absolute top-0 left-0 w-1/2 h-full flex flex-col justify-center items-start p-8 bg-transparent">
         <h1 className="text-6xl sm:text-7xl lg:text-8xl font-extrabold text-white leading-tight mb-6">
           Next Step <br />
@@ -94,11 +93,10 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Video Modal */}
       <VideoModal
         isOpen={isVideoModalOpen}
         onClose={() => setIsVideoModalOpen(false)}
-        videoUrl="/extension_demo.mp4" // Replace with your video URL
+        videoUrl="/extension_demo.mp4" 
       />
     </div>
   );

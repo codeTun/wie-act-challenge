@@ -10,7 +10,7 @@ export default function ContactPage() {
       <div className="max-w-7xl mx-auto">
         <div className="bg-gradient-to-t from-purple-700 to-pink-600 shadow-lg rounded-xl overflow-hidden">
           <div className="lg:flex">
-            {/* Left side - Contact Information */}
+          
             <div className="lg:w-1/2 bg-gradient-to-t from-purple-800 to-pink-700 p-10 lg:p-14 space-y-8">
               <h1 className="text-4xl font-extrabold text-white mb-6">Get in touch</h1>
               <p className="text-lg text-white mb-8">
@@ -33,7 +33,6 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Right side - Contact Form */}
             <div className="lg:w-1/2 bg-white p-10 lg:p-14 space-y-8">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Send us a message</h2>
               <form className="space-y-6">
