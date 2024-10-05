@@ -29,6 +29,7 @@
     "framer-motion": "^11.9.0",
     "lucide-react": "^0.446.0",
     "next": "14.2.13",
+    "nodemailer": "^6.9.15",
     "prisma": "^5.20.0",
     "react": "^18",
     "react-dom": "^18",
@@ -39,6 +40,7 @@
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.16",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
     "eslint": "^8",

@@ -26,14 +26,16 @@ export function Navbar() {
   return (
     <nav className="bg-gradient-to-r from-pink-500 to-indigo-500 p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <Image
-          src="/defendher_2.svg"
-          width={60}
-          height={60}
-          alt="Logo of our project defend her."
-          loading="lazy"	
-          quality={100}	
-        />
+        <Link href="/" aria-label="Go to homepage">
+          <Image
+            src="/defendher_2.svg"
+            width={60}
+            height={60}
+            alt="Logo of our project defend her."
+            loading="lazy"
+            quality={100}
+          />
+        </Link>
 
         {/* Mobile menu button */}
         <button

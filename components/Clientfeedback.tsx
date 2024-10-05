@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { Star } from "lucide-react";
 import { fetchFeedbacks } from "../model/FetchFeedbacks"; // Adjust the path if necessary
 
@@ -47,29 +47,41 @@ export function ClientFeedbackComponent() {
   const [feedbacks, setFeedbacks] = useState<FeedbackCardProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
-  // Fetch feedbacks on component mount
+  // Fetch feedbacks on component mount using useCallback
+  const getFeedbacks = useCallback(async () => {
+    try {
+      const data = await fetchFeedbacks(); // Fetch feedbacks from the server
+
+      // Map the server data to match the FeedbackCardProps structure
+      const mappedFeedbacks = data.map((feedback) => ({
+        name: feedback.name,
+        message: feedback.message, // Map 'message' to 'feedback'
+        rating: feedback.stars, // Map 'stars' to 'rating'
+      }));
+
+      setFeedbacks(mappedFeedbacks); // Set the mapped feedbacks to state
+    } catch (error) {
+      console.error("Error fetching feedbacks:", error);
+    } finally {
+      setLoading(false); // Stop loading once data is fetched
+    }
+  }, []); // No dependencies, this function will not change
+
   useEffect(() => {
-    const getFeedbacks = async () => {
-      try {
-        const data = await fetchFeedbacks(); // Fetch feedbacks from the server
+    getFeedbacks(); // Call the getFeedbacks function
+  }, [getFeedbacks]); // Include getFeedbacks in the dependency array
 
-        // Map the server data to match the FeedbackCardProps structure
-        const mappedFeedbacks = data.map((feedback) => ({
-          name: feedback.name,
-          message: feedback.message, // Map 'message' to 'feedback'
-          rating: feedback.stars, // Map 'stars' to 'rating'
-        }));
-
-        setFeedbacks(mappedFeedbacks); // Set the mapped feedbacks to state
-      } catch (error) {
-        console.error("Error fetching feedbacks:", error);
-      } finally {
-        setLoading(false); // Stop loading once data is fetched
-      }
-    };
-
-    getFeedbacks();
-  }, []);
+  // Memoizing feedback cards outside of the component return
+  const feedbackCards = useMemo(() => {
+    return feedbacks.map((feedback, index) => (
+      <FeedbackCard
+        key={index}
+        name={feedback.name}
+        message={feedback.message}
+        rating={feedback.rating}
+      />
+    ));
+  }, [feedbacks]); // Recompute when feedbacks change
 
   if (loading) {
     return <div className="text-center text-white">Loading feedbacks...</div>;
@@ -80,14 +92,7 @@ export function ClientFeedbackComponent() {
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-center">
           {feedbacks.length > 0 ? (
-            feedbacks.map((feedback, index) => (
-              <FeedbackCard
-                key={index}
-                name={feedback.name}
-                message={feedback.message}
-                rating={feedback.rating}
-              />
-            ))
+            feedbackCards
           ) : (
             <div className="text-white text-center col-span-full">
               No feedbacks available.
