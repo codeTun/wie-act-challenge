@@ -98,6 +98,8 @@ export function TeamSectionComponent() {
                 width={400}
                 height={400}
                 className="w-full h-cover object-cover"
+                loading='lazy'
+                quality={100}
               />
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">{member.name}</h3>

@@ -1,156 +1,162 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { ChevronRight, ChevronLeft, Play } from 'lucide-react'
-import { Button } from "@/components/ui/button"
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Play } from "lucide-react";
+import { X } from "lucide-react"; 
 
 const cubeContent = [
   {
     title: "Innovate",
     description: "Push boundaries with cutting-edge solutions",
-    bgClass: "bg-gradient-to-br from-purple-600 to-indigo-700",
+    imageUrl: "image1.jpg", 
   },
   {
     title: "Create",
     description: "Bring your ideas to life with powerful tools",
-    bgClass: "bg-gradient-to-br from-blue-500 to-teal-400",
+    imageUrl: "image5.jpg",
   },
   {
     title: "Collaborate",
     description: "Work seamlessly with teams across the globe",
-    bgClass: "bg-gradient-to-br from-pink-500 to-orange-400",
+    imageUrl: "image4.jpg",
   },
   {
     title: "Accelerate",
     description: "Supercharge your workflow and productivity",
-    bgClass: "bg-gradient-to-br from-green-400 to-cyan-500",
+    imageUrl: "image3.jpg",
   },
-]
+];
 
-export function HeroSection() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isRotating, setIsRotating] = useState(false)
+export default function HeroSection() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      rotateToNext()
-    }, 5000)
-    return () => clearInterval(timer)
-  }, [currentIndex])
+      rotateToNext();
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [currentIndex]);
 
   const rotateToNext = () => {
-    setIsRotating(true)
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % cubeContent.length)
-    setTimeout(() => setIsRotating(false), 500)
-  }
-
-  const rotateToPrev = () => {
-    setIsRotating(true)
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + cubeContent.length) % cubeContent.length)
-    setTimeout(() => setIsRotating(false), 500)
-  }
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % cubeContent.length);
+  };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-900">
-      <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:40px_40px]" />
-      
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-center justify-between">
-          <div className="w-full lg:w-1/2 text-center lg:text-left mb-12 lg:mb-0">
-            <motion.h1 
-              className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              Next Step: <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-              Digital Safety?
-              </span>
-            </motion.h1>
-            <motion.p 
-              className="text-xl text-gray-300 mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Together, we can create a safer digital world for all women.
-            </motion.p>
+    <div className="relative min-h-screen flex bg-gradient-to-br from-purple-800 to-pink-900 bg-fixed">
 
-            {/* Flexbox container to align both buttons on the same line */}
-            <motion.div
-              className="flex space-x-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              {/* Get Started Button */}
-              <Button size="lg" className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
-                Get Started Now
-              </Button>
+      <div className="absolute inset-0 bg-black opacity-50" />
 
-              {/* Watch Video Button */}
-              <ElegantVideoButton />
-            </motion.div>
-          </div>
 
-          <div className="w-full lg:w-1/2 h-96 relative perspective-1000">
-            <div 
-              className={`w-full h-full transform-style-3d transition-transform duration-500 ease-in-out ${isRotating ? 'animate-rotate-y' : ''}`}
-              style={{ transform: `rotateY(${currentIndex * -90}deg)` }}
-            >
-              {cubeContent.map((content, index) => (
-                <div
-                  key={index}
-                  className={`absolute inset-0 w-full h-full ${content.bgClass} rounded-2xl shadow-2xl flex items-center justify-center p-8 backface-hidden`}
-                  style={{ transform: `rotateY(${index * 90}deg) translateZ(240px)` }}
-                >
-                  <div className="text-center">
-                    <h2 className="text-4xl font-bold text-white mb-4">{content.title}</h2>
-                    <p className="text-xl text-white">{content.description}</p>
-                  </div>
-                </div>
-              ))}
+      <div className="relative w-full flex-1 overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            className="absolute inset-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <img
+              src={cubeContent[currentIndex].imageUrl}
+              alt={cubeContent[currentIndex].title}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 flex items-center justify-center p-8 bg-black bg-opacity-50">
+              <div className="text-center text-white" style={{ marginLeft: "40%", marginBottom: "10%" }}>
+                <h2 className="text-6xl font-bold mb-4">{cubeContent[currentIndex].title}</h2>
+                <p className="text-2xl">{cubeContent[currentIndex].description}</p>
+              </div>
             </div>
-          </div>
-        </div>
-        
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4">
-          <Button size="icon" variant="outline" className="text-white border-white hover:bg-white hover:text-gray-900" onClick={rotateToPrev}>
-            <ChevronLeft className="h-6 w-6" />
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      <div className="absolute top-0 left-0 w-1/2 h-full flex flex-col justify-center items-start p-8 bg-transparent">
+        <h1 className="text-6xl sm:text-7xl lg:text-8xl font-extrabold text-white leading-tight mb-6">
+          Next Step <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+            Digital Safety
+          </span>
+        </h1>
+        <p className="text-2xl text-gray-300 mb-8">
+          Together, we can create a safer digital world for all women.
+        </p>
+        <div className="flex space-x-4">
+          <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+            Get Started Now
           </Button>
-          <Button size="icon" variant="outline" className="text-white border-white hover:bg-white hover:text-gray-900" onClick={rotateToNext}>
-            <ChevronRight className="h-6 w-6" />
-          </Button>
+          <CreativeVideoButton onClick={() => setIsVideoModalOpen(true)} />
         </div>
       </div>
+
+      <VideoModal
+        isOpen={isVideoModalOpen}
+        onClose={() => setIsVideoModalOpen(false)}
+        videoUrl="/extension_demo.mp4" 
+      />
     </div>
-  )
+  );
 }
 
-// ElegantVideoButton Component
-function ElegantVideoButton() {
-  const [isHovered, setIsHovered] = useState(false)
+function CreativeVideoButton({ onClick }: { onClick: () => void }) {
+  return (
+    <div className="from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold">
+      <button
+        onClick={onClick}
+        className="group relative overflow-hidden bg-white/10 hover:bg-white/20 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl backdrop-blur-sm"
+      >
+        <span className="relative z-10 flex items-center">
+          <Play className="w-5 h-5 mr-2" />
+          Watch Video
+        </span>
+      </button>
+    </div>
+  );
+}
+
+function VideoModal({
+  isOpen,
+  onClose,
+  videoUrl,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  videoUrl: string;
+}) {
+  if (!isOpen) return null;
 
   return (
-    <Button 
-      className={`bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold py-4 px-8 rounded-full
-        inline-flex items-center transition-all duration-300 ease-in-out
-        border-2 border-transparent hover:from-purple-600 hover:to-pink-600
-        shadow-lg hover:shadow-xl
-        ${isHovered ? 'pr-10' : 'pr-8'}
-      `}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 backdrop-blur-sm"
     >
-      <div className={`mr-3 w-8 h-8 rounded-full bg-white flex items-center justify-center transition-all duration-300 ease-in-out ${isHovered ? 'bg-black' : 'bg-white'}`}>
-        <Play className={`w-4 h-4 transition-all duration-300 ease-in-out ${isHovered ? 'text-white' : 'text-black'}`} />
-      </div>
-      <span className="text-lg">Watch Video</span>
-      <span className={`ml-2 transition-all duration-300 ${isHovered ? 'opacity-100 translate-x-1' : 'opacity-0 -translate-x-1'}`}>
-        →
-      </span>
-    </Button>
-  )
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        className="relative w-full h-full max-w-4xl max-h-[90vh] bg-gray-900 rounded-lg shadow-xl overflow-hidden"
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors duration-200"
+        >
+          <X className="w-6 h-6" />
+        </button>
+        <div className="w-full h-full">
+          <iframe
+            src={videoUrl}
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowFullScreen
+            className="w-full h-full"
+          ></iframe>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
 }

@@ -1,23 +1,39 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { Button } from "@/components/ui/button"
-import { Menu, X, Home, Briefcase, Info, Phone, ChevronDown } from 'lucide-react'
+import { useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Menu,
+  X,
+  Home,
+  Briefcase,
+  Info,
+  Phone,
+  ChevronDown,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
+import Image from "next/image";
 
 export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className="bg-gradient-to-r from-pink-500 to-indigo-500 p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="text-primary-foreground font-bold text-xl">Logo</div>
+        <Image
+          src="/defendher_2.svg"
+          width={60}
+          height={60}
+          alt="Logo of our project defend her."
+          loading="lazy"	
+          quality={100}	
+        />
 
         {/* Mobile menu button */}
         <button
@@ -74,17 +90,33 @@ export function Navbar() {
   );
 }
 
-function NavItem({ href, children, icon, mobile = false }: { href: string; children: React.ReactNode; icon: React.ReactNode; mobile?: boolean }) {
-  const baseClasses = "text-primary-foreground hover:text-secondary transition-colors duration-300 flex items-center"
-  const mobileClasses = "block py-2 hover:border-l-4 hover:border-secondary pl-2"
-  const desktopClasses = "inline-flex hover:border-b-2 hover:border-secondary pb-1"
+function NavItem({
+  href,
+  children,
+  icon,
+  mobile = false,
+}: {
+  href: string;
+  children: React.ReactNode;
+  icon: React.ReactNode;
+  mobile?: boolean;
+}) {
+  const baseClasses =
+    "text-primary-foreground hover:text-secondary transition-colors duration-300 flex items-center";
+  const mobileClasses =
+    "block py-2 hover:border-l-4 hover:border-secondary pl-2";
+  const desktopClasses =
+    "inline-flex hover:border-b-2 hover:border-secondary pb-1";
 
   return (
-    <Link href={href} className={`${baseClasses} ${mobile ? mobileClasses : desktopClasses}`}>
+    <Link
+      href={href}
+      className={`${baseClasses} ${mobile ? mobileClasses : desktopClasses}`}
+    >
       {icon}
       <span className={mobile ? "ml-2" : "ml-1"}>{children}</span>
     </Link>
-  )
+  );
 }
 
 function ServicesDropdown() {
@@ -103,11 +135,11 @@ function ServicesDropdown() {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }
 
 function MobileServicesDropdown() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div>
@@ -121,17 +153,26 @@ function MobileServicesDropdown() {
       </button>
       {isOpen && (
         <div className="pl-6 py-2 space-y-2">
-          <Link href="/services/web-development" className="block text-primary-foreground hover:text-secondary">
+          <Link
+            href="/services/web-development"
+            className="block text-primary-foreground hover:text-secondary"
+          >
             Web Development
           </Link>
-          <Link href="/services/mobile-apps" className="block text-primary-foreground hover:text-secondary">
+          <Link
+            href="/services/mobile-apps"
+            className="block text-primary-foreground hover:text-secondary"
+          >
             Mobile Apps
           </Link>
-          <Link href="/services/cloud-solutions" className="block text-primary-foreground hover:text-secondary">
+          <Link
+            href="/services/cloud-solutions"
+            className="block text-primary-foreground hover:text-secondary"
+          >
             Cloud Solutions
           </Link>
         </div>
       )}
     </div>
-  )
+  );
 }
