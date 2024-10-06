@@ -6,7 +6,7 @@ import { Facebook, Instagram, Linkedin, Mail } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer className="bg-gradient-to-t from-indigo-900 via-indigo-800 to-indigo-700 text-white">
+    <footer className="bg-gradient-to-t from-indigo-900 via-indigo-800 to-gray-700 text-white">
       <div className="max-w-6xl mx-auto px-4 py-10 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="space-y-4">

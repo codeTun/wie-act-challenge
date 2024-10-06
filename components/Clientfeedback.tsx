@@ -47,31 +47,28 @@ export function ClientFeedbackComponent() {
   const [feedbacks, setFeedbacks] = useState<FeedbackCardProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
-  // Fetch feedbacks on component mount using useCallback
   const getFeedbacks = useCallback(async () => {
     try {
-      const data = await fetchFeedbacks(); // Fetch feedbacks from the server
+      const data = await fetchFeedbacks();
 
-      // Map the server data to match the FeedbackCardProps structure
       const mappedFeedbacks = data.map((feedback) => ({
         name: feedback.name,
-        message: feedback.message, // Map 'message' to 'feedback'
-        rating: feedback.stars, // Map 'stars' to 'rating'
+        message: feedback.message,
+        rating: feedback.stars,
       }));
 
-      setFeedbacks(mappedFeedbacks); // Set the mapped feedbacks to state
+      setFeedbacks(mappedFeedbacks);
     } catch (error) {
       console.error("Error fetching feedbacks:", error);
     } finally {
-      setLoading(false); // Stop loading once data is fetched
+      setLoading(false);
     }
-  }, []); // No dependencies, this function will not change
+  }, []);
 
   useEffect(() => {
-    getFeedbacks(); // Call the getFeedbacks function
-  }, [getFeedbacks]); // Include getFeedbacks in the dependency array
+    getFeedbacks();
+  }, [getFeedbacks]);
 
-  // Memoizing feedback cards outside of the component return
   const feedbackCards = useMemo(() => {
     return feedbacks.map((feedback, index) => (
       <FeedbackCard
@@ -81,14 +78,14 @@ export function ClientFeedbackComponent() {
         rating={feedback.rating}
       />
     ));
-  }, [feedbacks]); // Recompute when feedbacks change
+  }, [feedbacks]);
 
   if (loading) {
     return <div className="text-center text-white">Loading feedbacks...</div>;
   }
 
   return (
-    <section className="py-16 px-4 mt-4 bg-gray-600" >
+    <section className="py-16 px-4 mt-4 bg-gray-900  bg-texture bg-cover">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-8 text-blue-300">
           Feedback from Our Users
@@ -96,7 +93,7 @@ export function ClientFeedbackComponent() {
         <div className="grid grid-cols-4 gap-4 py-4">
           {feedbacks.length > 0 ? (
             feedbackCards.slice(0, 8).map((card, index) => (
-              <div key={index} className=" p-4 rounded-md">
+              <div key={index} className="p-4 rounded-md">
                 {card}
               </div>
             ))

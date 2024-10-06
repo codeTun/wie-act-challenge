@@ -61,18 +61,18 @@ export function ModernVideoSectionComponent() {
   }, []);
 
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-gray-900">
+    <section className="relative w-full h-auto flex justify-center items-center bg-gray-900 py-8">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="absolute inset-0 w-full h-full"
+        className="relative w-full max-w-3xl h-auto"
       >
         <video
           ref={videoRef}
           src="/extension_demo.mp4"
           poster="/rs7.jpg?height=720&width=1280"
-          className="w-full h-full object-cover"
+          className="w-full h-auto max-h-[500px] object-cover rounded-lg shadow-lg transition-all duration-500 ease-in-out"
           muted={isMuted}
           playsInline
           preload="auto"
@@ -96,7 +96,7 @@ export function ModernVideoSectionComponent() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
-        className="absolute bottom-4 left-4 right-4 flex justify-between items-center z-20"
+        className="absolute bottom-7 left-6 right-6 flex justify-between items-center z-20"
       >
         <IconButton
           color="primary"

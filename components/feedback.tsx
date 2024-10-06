@@ -15,8 +15,8 @@ import {
 import { Input } from "@/components/ui/input";
 import Label from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { AddFeedback } from "../model/AddFeedback"; // Adjust if path differs
-import toast, { Toaster } from "react-hot-toast"; // Import toast
+import { AddFeedback } from "../model/AddFeedback"; 
+import toast, { Toaster } from "react-hot-toast"; 
 
 // Star Rating Component
 interface StarRatingProps {
@@ -46,7 +46,7 @@ function SubmitButton({ loading }: { loading: boolean }) {
     <Button
       type="submit"
       disabled={loading}
-      className={`bg-indigo-900 hover:bg-indigo-800 text-white ${
+      className={`bg-indigo-900 hover:bg-indigo-800 text-white bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded-full shadow-md transition-all duration-300 transform hover:scale-105 ${
         loading ? "opacity-50 cursor-not-allowed" : ""
       }`}
     >
@@ -88,40 +88,52 @@ export default function Feedback() {
       <Toaster position="top-right" /> {/* Toast container */}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button className="bg-indigo-900 hover:bg-indigo-800 text-white">
+          <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
             <MessageCircle className="mr-2 h-4 w-4" />
             Send Feedback
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Send feedback</DialogTitle>
-            <DialogDescription>
+
+        <DialogContent className="bg-gray-900 p-6 sm:max-w-[500px] rounded-lg shadow-xl">
+          <DialogHeader className="text-center mb-4">
+            <DialogTitle className="text-2xl font-bold text-white">
+              Send Feedback
+            </DialogTitle>
+            <DialogDescription className="text-sm text-gray-400">
               We&apos;d love to hear your thoughts! Please fill out this form to
               send us your feedback.
             </DialogDescription>
-          </DialogHeader> 
+          </DialogHeader>
+
           <form onSubmit={handleSubmit}>
-            <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="name" className="col-span-1">
+            <div className="grid gap-6 py-4">
+              <div className="grid grid-cols-1 gap-2">
+                <Label htmlFor="name" className="text-white">
                   Name
                 </Label>
-                <Input id="name" name="name" required className="col-span-3" />
+                <Input
+                  id="name"
+                  name="name"
+                  required
+                  className="bg-gray-800 text-white border-gray-700 focus:ring-purple-500 focus:border-purple-500 rounded-md"
+                />
               </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="feedback" className="col-span-1">
+
+              <div className="grid grid-cols-1 gap-2">
+                <Label htmlFor="feedback" className="text-white">
                   Feedback
                 </Label>
                 <Textarea
                   id="feedback"
-                  name="message" // Corrected to match server-side
+                  name="message"
                   required
-                  className="col-span-3"
+                  className="bg-gray-800 text-white border-gray-700 focus:ring-purple-500 focus:border-purple-500 rounded-md"
                 />
               </div>
+
               <StarRating rating={rating} setRating={setRating} />
             </div>
+
             <DialogFooter className="flex justify-center">
               <SubmitButton loading={loading} />
             </DialogFooter>
