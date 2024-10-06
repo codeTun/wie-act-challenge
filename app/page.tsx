@@ -9,9 +9,7 @@ export default function Home() {
     <>
       <Navbar />
       <HeroSection />
-      <ClientFeedbackComponent />
       <ChatbotComponent />
-      <Feedback />
       <Footer />
     </>
   );

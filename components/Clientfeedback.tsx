@@ -16,7 +16,7 @@ const FeedbackCard: React.FC<FeedbackCardProps> = ({
   message,
   rating,
 }) => (
-  <div className="bg-white rounded-lg shadow-xl overflow-hidden transform transition duration-500 hover:scale-105">
+  <div className="bg-white rounded-lg shadow-xl overflow-hidden transform transition duration-500 hover:scale-105 w-64 mx-2">
     <div className="p-4">
       <div className="flex items-center mb-2">
         <div className="w-10 h-10 bg-gradient-to-r from-pink-500 to-orange-500 rounded-full flex items-center justify-center text-white text-lg font-bold">
@@ -27,7 +27,7 @@ const FeedbackCard: React.FC<FeedbackCardProps> = ({
         </div>
       </div>
       <p className="text-sm text-gray-700 mb-2">{message}</p>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center">
         <div className="flex">
           {[...Array(5)].map((_, i) => (
             <Star
@@ -53,7 +53,7 @@ export function ClientFeedbackComponent() {
       const data = await fetchFeedbacks(); // Fetch feedbacks from the server
 
       // Map the server data to match the FeedbackCardProps structure
-      const mappedFeedbacks = data.map((feedback) => ({
+      const mappedFeedbacks = data.map((feedback: any) => ({
         name: feedback.name,
         message: feedback.message, // Map 'message' to 'feedback'
         rating: feedback.stars, // Map 'stars' to 'rating'
@@ -88,13 +88,16 @@ export function ClientFeedbackComponent() {
   }
 
   return (
-    <section className="bg-gray-900 py-16 px-4">
+    <section className="py-16 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-center">
+        <h2 className="text-4xl font-bold text-center mb-8 text-white">
+          Feedback from Our Users
+        </h2>
+        <div className="flex overflow-x-auto py-4 scrollbar-hide">
           {feedbacks.length > 0 ? (
             feedbackCards
           ) : (
-            <div className="text-white text-center col-span-full">
+            <div className="text-white text-center">
               No feedbacks available.
             </div>
           )}

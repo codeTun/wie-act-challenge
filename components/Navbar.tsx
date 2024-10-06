@@ -24,7 +24,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-gradient-to-r from-pink-500 to-indigo-500 p-4">
+    <nav className="bg-gradient-to-t from-indigo-900 via-indigo-800 to-gray-700 p-4">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" aria-label="Go to homepage">
           <Image

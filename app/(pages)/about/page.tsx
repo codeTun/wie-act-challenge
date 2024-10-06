@@ -11,7 +11,7 @@ export default function AboutPage() {
       <Navbar />
       <ClubDescriptionSectionComponent />
       <TeamSectionComponent />
-      <ModernVideoSectionComponent />
+     
       <ExtensionDetails />
       <Footer />
   </>

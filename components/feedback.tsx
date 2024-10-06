@@ -84,13 +84,13 @@ export default function Feedback() {
   };
 
   return (
-    <div className="bg-gray-900 min-h-screen flex justify-center items-center">
+    <div className="flex justify-center items-center">
       <Toaster position="top-right" /> {/* Toast container */}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button className="bg-indigo-900 hover:bg-indigo-800 text-white">
             <MessageCircle className="mr-2 h-4 w-4" />
-            Feedback
+            Send Feedback
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
@@ -100,7 +100,7 @@ export default function Feedback() {
               We&apos;d love to hear your thoughts! Please fill out this form to
               send us your feedback.
             </DialogDescription>
-          </DialogHeader>
+          </DialogHeader> 
           <form onSubmit={handleSubmit}>
             <div className="grid gap-4 py-4">
               <div className="grid grid-cols-4 items-center gap-4">
