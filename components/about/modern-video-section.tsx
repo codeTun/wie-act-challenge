@@ -17,6 +17,7 @@ export function ModernVideoSectionComponent() {
 
   const togglePlay = () => {
     if (videoRef.current) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       isPlaying ? videoRef.current.pause() : videoRef.current.play();
       setIsPlaying(!isPlaying);
     }
@@ -71,7 +72,7 @@ export function ModernVideoSectionComponent() {
           ref={videoRef}
           src="/extension_demo.mp4"
           poster="/rs7.jpg?height=720&width=1280"
-          className="w-full h-full object-cover" 
+          className="w-full h-full object-cover"
           muted={isMuted}
           playsInline
           preload="auto"
@@ -97,23 +98,23 @@ export function ModernVideoSectionComponent() {
         transition={{ duration: 0.8, delay: 0.4 }}
         className="absolute bottom-4 left-4 right-4 flex justify-between items-center z-20"
       >
-        <IconButton 
-          color="primary" 
-          onClick={togglePlay} 
+        <IconButton
+          color="primary"
+          onClick={togglePlay}
           className="hover:bg-gray-800 transition duration-200"
         >
           {isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
         </IconButton>
-        <IconButton 
-          color="primary" 
-          onClick={toggleMute} 
+        <IconButton
+          color="primary"
+          onClick={toggleMute}
           className="hover:bg-gray-800 transition duration-200"
         >
           {isMuted ? <VolumeOffIcon /> : <VolumeUpIcon />}
         </IconButton>
-        <IconButton 
-          color="primary" 
-          onClick={handleFullscreen} 
+        <IconButton
+          color="primary"
+          onClick={handleFullscreen}
           className="hover:bg-gray-800 transition duration-200"
         >
           <FullscreenIcon />

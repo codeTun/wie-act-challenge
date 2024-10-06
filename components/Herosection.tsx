@@ -8,6 +8,8 @@ import { X } from "lucide-react";
 import { ModernVideoSectionComponent } from "@/components/about/modern-video-section";
 import Feedback from "@/components/feedback";
 import { ClientFeedbackComponent } from "@/components/Clientfeedback";
+import Image from "next/image";
+import Link from "next/link";
 
 const cubeContent = [
   {
@@ -62,7 +64,7 @@ export default function HeroSection() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <img
+              <Image
                 src={cubeContent[currentIndex].imageUrl}
                 alt={cubeContent[currentIndex].title}
                 className="w-full h-full object-cover"
@@ -111,7 +113,7 @@ export default function HeroSection() {
 
       <div className="py-16 px-8 bg-gradient-to-l from-purple-500 via-purple-700 to-fuchsia-900 flex flex-col lg:flex-row items-center justify-between relative">
         <div className="absolute inset-0 z-0 opacity-20">
-          <img
+          <Image
             src="/service.jpg"
             alt="Service Background"
             className="w-full h-full object-cover"
@@ -134,12 +136,11 @@ export default function HeroSection() {
             digital interactions, we’ve got you covered.
           </p>
           <div className="flex justify-start mt-8">
-            <Button
-              href="/services/extension"
-              className="bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 px-6 rounded-full"
-            >
-              Learn More
-            </Button>
+            <Link href="/services/extension">
+              <Button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 px-6 rounded-full">
+                Learn More
+              </Button>
+            </Link>
           </div>
         </div>
 
@@ -150,17 +151,17 @@ export default function HeroSection() {
 
       <div className="py-10 px-4 text-center bg-gradient-to-t from-indigo-900 via-indigo-800 to-gray-700">
         <div className="flex flex-wrap justify-center items-center gap-8">
-          <img
+          <Image
             src="/ieee.png"
             alt="IEEE"
             className="h-16 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
           />
-          <img
+          <Image
             src="/wie-act-logo.png"
             alt="WIE Act"
             className="h-16 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
           />
-          <img
+          <Image
             src="/wie.png"
             alt="WIE"
             className="h-16 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
@@ -170,7 +171,7 @@ export default function HeroSection() {
 
       <div className="relative py-16 px-8 bg-gradient-to-l from-purple-500 via-purple-700 to-fuchsia-900 overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-20">
-          <img
+          <Image
             src="/feedback.jpg"
             alt="Feedback Background"
             className="w-full h-full object-cover"
