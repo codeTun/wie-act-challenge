@@ -12,7 +12,6 @@ type Message = {
   sender: "user" | "bot";
 };
 
-
 const ChatbotComponent: React.FC = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -28,35 +27,70 @@ const ChatbotComponent: React.FC = () => {
 
   const handleMessageClick = () => {
     setIsChatOpen(true);
+    // Initialize with a greeting if no messages
+    if (messages.length === 0) {
+      const initialMessage: Message = {
+        id: 1,
+        text: "Hello! I am your personal assistant. How can I help you today?",
+        sender: "bot",
+      };
+      setMessages([initialMessage]);
+    }
   };
 
   const handleCloseChat = () => {
     setIsChatOpen(false);
   };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (inputMessage.trim() === "") return;
-
+  
     const newMessage: Message = {
       id: messages.length + 1,
-      text: inputMessage,
+      text: inputMessage.trim(),
       sender: "user",
     };
-
+  
     setMessages([...messages, newMessage]);
     setInputMessage("");
     setIsTyping(true);
-
-    // Simulate bot response
-    setTimeout(() => {
+  
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: newMessage.text }),
+      });
+  
+      console.log("API response status:", response.status);
+      console.log("API response text:", await response.text());
+  
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+  
+      const data = await response.json();
+  
       const botResponse: Message = {
         id: messages.length + 2,
-        text: "Thank you for your message. I'm a demo chatbot, so I can't provide a real response. But in a full implementation, I would process your message and respond accordingly.",
+        text: data.reply,
         sender: "bot",
       };
+  
       setMessages((prevMessages) => [...prevMessages, botResponse]);
+    } catch (error) {
+      console.error("Error:", error);
+      const errorMessage: Message = {
+        id: messages.length + 2,
+        text: "Sorry, something went wrong. Please try again later.",
+        sender: "bot",
+      };
+      setMessages((prevMessages) => [...prevMessages, errorMessage]);
+    } finally {
       setIsTyping(false);
-    }, 2000);
+    }
   };
 
   return (
@@ -103,7 +137,7 @@ const ChatbotComponent: React.FC = () => {
                   {message.sender === "bot" && (
                     <Avatar className="w-8 h-8 mr-2">
                       <AvatarImage
-                        src="/touta2.jpg?height=32&width=32"
+                        src="/touta2.jpg"
                         alt="Bot Avatar"
                       />
                       <AvatarFallback>Bot</AvatarFallback>
@@ -118,13 +152,22 @@ const ChatbotComponent: React.FC = () => {
                   >
                     {message.text}
                   </div>
+                  {message.sender === "user" && (
+                    <Avatar className="w-8 h-8 ml-2">
+                      <AvatarImage
+                        src="/touta2.jpg" // Ensure this image exists in your public folder
+                        alt="User Avatar"
+                      />
+                      <AvatarFallback>User</AvatarFallback>
+                    </Avatar>
+                  )}
                 </div>
               ))
             )}
             {isTyping && (
               <div className="flex justify-start mb-4">
                 <Avatar className="w-8 h-8 mr-2">
-                  <AvatarImage src="/touta2.jpg?height=32&width=32" alt="Bot" />
+                  <AvatarImage src="/touta2.jpg" alt="Bot" />
                   <AvatarFallback>Bot</AvatarFallback>
                 </Avatar>
                 <div className="bg-gray-200 text-gray-800 rounded-lg p-3 animate-pulse">
