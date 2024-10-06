@@ -53,7 +53,7 @@ export function ClientFeedbackComponent() {
       const data = await fetchFeedbacks(); // Fetch feedbacks from the server
 
       // Map the server data to match the FeedbackCardProps structure
-      const mappedFeedbacks = data.map((feedback: any) => ({
+      const mappedFeedbacks = data.map((feedback) => ({
         name: feedback.name,
         message: feedback.message, // Map 'message' to 'feedback'
         rating: feedback.stars, // Map 'stars' to 'rating'
@@ -88,16 +88,20 @@ export function ClientFeedbackComponent() {
   }
 
   return (
-    <section className="py-16 px-4">
+    <section className="py-16 px-4 mt-4 bg-gray-600" >
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-8 text-white">
+        <h2 className="text-4xl font-bold text-center mb-8 text-blue-300">
           Feedback from Our Users
         </h2>
-        <div className="flex overflow-x-auto py-4 scrollbar-hide">
+        <div className="grid grid-cols-4 gap-4 py-4">
           {feedbacks.length > 0 ? (
-            feedbackCards
+            feedbackCards.slice(0, 8).map((card, index) => (
+              <div key={index} className=" p-4 rounded-md">
+                {card}
+              </div>
+            ))
           ) : (
-            <div className="text-white text-center">
+            <div className="text-white text-center col-span-4">
               No feedbacks available.
             </div>
           )}
