@@ -15,8 +15,8 @@ import {
 import { Input } from "@/components/ui/input";
 import Label from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { AddFeedback } from "../model/AddFeedback"; 
-import toast, { Toaster } from "react-hot-toast"; 
+import { AddFeedback } from "../model/AddFeedback";
+import toast from "react-hot-toast";
 
 // Star Rating Component
 interface StarRatingProps {
@@ -85,7 +85,6 @@ export default function Feedback() {
 
   return (
     <div className="flex justify-center items-center">
-      <Toaster position="top-right" /> {/* Toast container */}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
