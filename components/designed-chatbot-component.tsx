@@ -19,6 +19,21 @@ const ChatbotComponent: React.FC = () => {
   const [isTyping, setIsTyping] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
+  const predefinedResponses = [
+    {
+      question: "How i can Install the extension ?",
+      response: "Click the download button.",
+    },
+    {
+      question: "What can you do ?",
+      response: "I can answer a few predefined questions.",
+    },
+    {
+      question: "How can I contact support ?",
+      response: "You can contact support through the contact page by clicking the 'Contact Us' button in the navbar.",
+    },
+  ];
+
   useEffect(() => {
     if (scrollAreaRef.current) {
       scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
@@ -42,55 +57,36 @@ const ChatbotComponent: React.FC = () => {
     setIsChatOpen(false);
   };
 
-  const handleSendMessage = async () => {
+  const handleSendMessage = () => {
     if (inputMessage.trim() === "") return;
-  
+
     const newMessage: Message = {
       id: messages.length + 1,
       text: inputMessage.trim(),
       sender: "user",
     };
-  
+
     setMessages([...messages, newMessage]);
     setInputMessage("");
     setIsTyping(true);
-  
-    try {
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: newMessage.text }),
-      });
-  
-      console.log("API response status:", response.status);
-      console.log("API response text:", await response.text());
-  
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-  
-      const data = await response.json();
-  
-      const botResponse: Message = {
-        id: messages.length + 2,
-        text: data.reply,
-        sender: "bot",
-      };
-  
+
+    // Find predefined response based on the user's question
+    const foundResponse = predefinedResponses.find((item) =>
+      inputMessage.toLowerCase().includes(item.question.toLowerCase())
+    );
+
+    const botResponse: Message = {
+      id: messages.length + 2,
+      text: foundResponse
+        ? foundResponse.response
+        : "Sorry, I can only answer specific questions.",
+      sender: "bot",
+    };
+
+    setTimeout(() => {
       setMessages((prevMessages) => [...prevMessages, botResponse]);
-    } catch (error) {
-      console.error("Error:", error);
-      const errorMessage: Message = {
-        id: messages.length + 2,
-        text: "Sorry, something went wrong. Please try again later.",
-        sender: "bot",
-      };
-      setMessages((prevMessages) => [...prevMessages, errorMessage]);
-    } finally {
       setIsTyping(false);
-    }
+    }, 1000); // Simulate typing delay
   };
 
   return (
