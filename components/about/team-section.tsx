@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Linkedin, Github, Globe } from 'lucide-react'
 
+
 const teamMembers = [
   {
     name: "Iheb Elazheri",
