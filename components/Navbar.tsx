@@ -132,7 +132,7 @@ function ServicesDropdown() {
       <DropdownMenuContent>
         <DropdownMenuItem>
           <Link href="/services/extension" className="flex items-center">
-            extension
+            Extension
           </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
