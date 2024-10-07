@@ -99,7 +99,7 @@ export function ClientFeedbackComponent() {
             ))
           ) : (
             <div className="text-white text-center col-span-4">
-              No feedbacks available.
+              No feedbacks available now.
             </div>
           )}
         </div>
