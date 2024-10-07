@@ -12,13 +12,31 @@ type Message = {
   sender: "user" | "bot";
 };
 
-
 const ChatbotComponent: React.FC = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+
+  const predefinedResponses = [
+    {
+      question: "Hello",
+      response: "Hi ! how i can help you ?",
+    },
+    {
+      question: "How i can Install the extension ?",
+      response: "Click the download button in the hero section.",
+    },
+    {
+      question: "What can you do ?",
+      response: "I can answer a few predefined questions.",
+    },
+    {
+      question: "How can I contact support ?",
+      response: "You can contact support through the contact page by clicking the 'Contact Us' button in the navbar.",
+    },
+  ];
 
   useEffect(() => {
     if (scrollAreaRef.current) {
@@ -28,6 +46,15 @@ const ChatbotComponent: React.FC = () => {
 
   const handleMessageClick = () => {
     setIsChatOpen(true);
+    // Initialize with a greeting if no messages
+    if (messages.length === 0) {
+      const initialMessage: Message = {
+        id: 1,
+        text: "Hello! I am your personal assistant. How can I help you today?",
+        sender: "bot",
+      };
+      setMessages([initialMessage]);
+    }
   };
 
   const handleCloseChat = () => {
@@ -39,7 +66,7 @@ const ChatbotComponent: React.FC = () => {
 
     const newMessage: Message = {
       id: messages.length + 1,
-      text: inputMessage,
+      text: inputMessage.trim(),
       sender: "user",
     };
 
@@ -47,16 +74,23 @@ const ChatbotComponent: React.FC = () => {
     setInputMessage("");
     setIsTyping(true);
 
-    // Simulate bot response
+    // Find predefined response based on the user's question
+    const foundResponse = predefinedResponses.find((item) =>
+      inputMessage.toLowerCase().includes(item.question.toLowerCase())
+    );
+
+    const botResponse: Message = {
+      id: messages.length + 2,
+      text: foundResponse
+        ? foundResponse.response
+        : "Sorry, I can only answer specific questions.",
+      sender: "bot",
+    };
+
     setTimeout(() => {
-      const botResponse: Message = {
-        id: messages.length + 2,
-        text: "Thank you for your message. I'm a demo chatbot, so I can't provide a real response. But in a full implementation, I would process your message and respond accordingly.",
-        sender: "bot",
-      };
       setMessages((prevMessages) => [...prevMessages, botResponse]);
       setIsTyping(false);
-    }, 2000);
+    }, 1000); // Simulate typing delay
   };
 
   return (
@@ -103,7 +137,7 @@ const ChatbotComponent: React.FC = () => {
                   {message.sender === "bot" && (
                     <Avatar className="w-8 h-8 mr-2">
                       <AvatarImage
-                        src="/touta2.jpg?height=32&width=32"
+                        src="/touta2.jpg"
                         alt="Bot Avatar"
                       />
                       <AvatarFallback>Bot</AvatarFallback>
@@ -118,13 +152,22 @@ const ChatbotComponent: React.FC = () => {
                   >
                     {message.text}
                   </div>
+                  {message.sender === "user" && (
+                    <Avatar className="w-8 h-8 ml-2">
+                      <AvatarImage
+                        src="/touta2.jpg" // Ensure this image exists in your public folder
+                        alt="User Avatar"
+                      />
+                      <AvatarFallback>User</AvatarFallback>
+                    </Avatar>
+                  )}
                 </div>
               ))
             )}
             {isTyping && (
               <div className="flex justify-start mb-4">
                 <Avatar className="w-8 h-8 mr-2">
-                  <AvatarImage src="/touta2.jpg?height=32&width=32" alt="Bot" />
+                  <AvatarImage src="/touta2.jpg" alt="Bot" />
                   <AvatarFallback>Bot</AvatarFallback>
                 </Avatar>
                 <div className="bg-gray-200 text-gray-800 rounded-lg p-3 animate-pulse">
