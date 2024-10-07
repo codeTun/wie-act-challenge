@@ -21,8 +21,12 @@ const ChatbotComponent: React.FC = () => {
 
   const predefinedResponses = [
     {
+      question: "Hello",
+      response: "Hi ! how i can help you ?",
+    },
+    {
       question: "How i can Install the extension ?",
-      response: "Click the download button.",
+      response: "Click the download button in the hero section.",
     },
     {
       question: "What can you do ?",
