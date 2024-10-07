@@ -128,8 +128,8 @@ export default function HeroSection() {
           <p className="text-left text-xl max-w-2xl text-white">
             Our Extension service helps you safeguard your online presence,
             offering tools to monitor, prevent, and react to digital threats.
-            Whether you’re concerned about privacy, security, or managing
-            digital interactions, we’ve got you covered.
+            Whether you&apos;re concerned about privacy, security, or managing
+            digital interactions, we&apos;ve got you covered.
           </p>
           <div className="flex justify-start mt-8">
             <Link href="/services/extension">
