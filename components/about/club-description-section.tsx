@@ -55,7 +55,7 @@ export function ClubDescriptionSectionComponent() {
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             SparkHer Mind: Where Women Ignite the Flames of STEM Brilliance.
-            IEEE WIE is one of the world’s leaders in changing the face of
+            IEEE WIE is one of the world`&apos;`s leaders in changing the face of
             engineering.
           </p>
         </motion.div>
@@ -99,7 +99,7 @@ export function ClubDescriptionSectionComponent() {
                   engineering. Our efforts are geared towards enhancing the hard
                   skills of our members, providing opportunities for skill
                   development, leadership training, and promoting career growth
-                  for all participants. We've organized several impactful
+                  for all participants. We`&apos;`ve organized several impactful
                   events, including WIEMpower Her 1.0, AI Pulse 1.0, WIE Heal
                   3.0, WIE Guide 1.0, among many others, offering numerous
                   learning and development sessions.{" "}
