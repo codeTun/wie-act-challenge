@@ -155,7 +155,7 @@ const ChatbotComponent: React.FC = () => {
                   {message.sender === "user" && (
                     <Avatar className="w-8 h-8 ml-2">
                       <AvatarImage
-                        src="/touta2.jpg" // Ensure this image exists in your public folder
+                        src="/wie.png" // Ensure this image exists in your public folder
                         alt="User Avatar"
                       />
                       <AvatarFallback>User</AvatarFallback>

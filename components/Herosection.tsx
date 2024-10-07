@@ -9,6 +9,7 @@ import { ModernVideoSectionComponent } from "@/components/about/modern-video-sec
 import Feedback from "@/components/feedback";
 import { ClientFeedbackComponent } from "@/components/Clientfeedback";
 import Link from "next/link";
+import Image from "next/image";
 
 const cubeContent = [
   {
@@ -63,9 +64,11 @@ export default function HeroSection() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <img
-                src={cubeContent[currentIndex].imageUrl}
+              <Image
+                src={`/${cubeContent[currentIndex].imageUrl}`} // Ensure the path starts with a leading slash
                 alt={cubeContent[currentIndex].title}
+                width={1920}
+                height={1080}
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 flex items-center justify-center p-8 bg-black bg-opacity-50">
@@ -96,8 +99,8 @@ export default function HeroSection() {
             Together, we can create a safer digital world for all women.
           </p>
           <div className="flex space-x-4">
-            <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-              Get Started Now
+            <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-6 px-7 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+              Download extension
             </Button>
             <CreativeVideoButton onClick={() => setIsVideoModalOpen(true)} />
           </div>
