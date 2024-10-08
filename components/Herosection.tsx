@@ -10,6 +10,7 @@ import Feedback from "@/components/feedback";
 import { ClientFeedbackComponent } from "@/components/Clientfeedback";
 import Link from "next/link";
 import Image from "next/image";
+import ReactPlayer from "react-player";
 
 const cubeContent = [
   {
@@ -99,9 +100,11 @@ export default function HeroSection() {
             Together, we can create a safer digital world for all women.
           </p>
           <div className="flex space-x-4">
-            <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-6 px-7 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-              Download extension
-            </Button>
+            <Link href="/working">
+              <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-6 px-7 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                Download extension
+              </Button>
+            </Link>
             <CreativeVideoButton onClick={() => setIsVideoModalOpen(true)} />
           </div>
         </div>
@@ -109,12 +112,12 @@ export default function HeroSection() {
         <VideoModal
           isOpen={isVideoModalOpen}
           onClose={() => setIsVideoModalOpen(false)}
-          videoUrl="/extension_demo.mp4"
+          videoUrl="https://www.youtube.com/watch?v=uh6j60dwyH8"
         />
       </div>
 
       {/* Services(extension) Section */}
-      <div className="py-16 px-8 bg-gray-900  flex flex-col lg:flex-row items-center justify-between">
+      <div className="py-16 px-8 bg-gray-900 flex flex-col lg:flex-row items-center justify-between">
         <div className="lg:w-1/2 mb-8 lg:mb-0 lg:pr-8">
           <h2 className="text-4xl font-bold mb-4 text-white">
             Experience Our{" "}
@@ -146,7 +149,7 @@ export default function HeroSection() {
       </div>
 
       {/* Feedback Section */}
-      <div className="py-16 px-8 bg-gray-900 ">
+      <div className="py-16 px-8 bg-gray-900">
         <h2 className="text-4xl font-bold text-center mb-4 text-white">
           Your Feedback Matters
         </h2>
@@ -198,17 +201,21 @@ function VideoModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
       <div className="relative w-full max-w-3xl">
-        <button
-          className="absolute top-2 right-2 text-white p-2 rounded-full hover:bg-gray-800 transition-all duration-300"
-          onClick={onClose}
+        {/* Button to close the modal */}
+        <Button
+          className="absolute top-2 right-2 z-50 text-white p-2 rounded-full hover:bg-gray-800 transition-all duration-300"
+          onClick={onClose} // Make sure the onClose is bound correctly
         >
           <X className="w-6 h-6" />
-        </button>
-        <video
-          src={videoUrl}
-          controls
-          autoPlay
-          className="w-full h-full rounded-lg shadow-lg"
+        </Button>
+
+        {/* Video player */}
+        <ReactPlayer
+          url={videoUrl}
+          playing
+          width="100%"
+          height="500px"
+          className="rounded-lg shadow-lg"
         />
       </div>
     </div>

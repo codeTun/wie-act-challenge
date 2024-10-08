@@ -1,40 +1,11 @@
 "use client";
-
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import IconButton from "@mui/material/IconButton";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import PauseIcon from "@mui/icons-material/Pause";
-import FullscreenIcon from "@mui/icons-material/Fullscreen";
-import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-import VolumeOffIcon from "@mui/icons-material/VolumeOff";
-import { ButtonIcon } from "@/components/button-icon";
+import ReactPlayer from "react-player";
 
 export function ModernVideoSectionComponent() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
-
-  const togglePlay = () => {
-    if (videoRef.current) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      isPlaying ? videoRef.current.pause() : videoRef.current.play();
-      setIsPlaying(!isPlaying);
-    }
-  };
-
-  const handleFullscreen = () => {
-    if (videoRef.current?.requestFullscreen) {
-      videoRef.current.requestFullscreen();
-    }
-  };
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
-  };
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -68,14 +39,14 @@ export function ModernVideoSectionComponent() {
         transition={{ duration: 0.8 }}
         className="relative w-full max-w-3xl h-auto"
       >
-        <video
-          ref={videoRef}
-          src="/extension_demo.mp4"
-          poster="/rs7.jpg?height=720&width=1280"
-          className="w-full h-auto max-h-[500px] object-cover rounded-lg shadow-lg transition-all duration-500 ease-in-out"
-          muted={isMuted}
-          playsInline
-          preload="auto"
+        <ReactPlayer
+          url="https://www.youtube.com/watch?v=3DhVk43GvNs"
+          playing
+          muted
+          controls
+          width="100%"
+          height="500px"
+          className="rounded-lg shadow-lg"
           loop
         />
         <AnimatePresence>
@@ -85,9 +56,7 @@ export function ModernVideoSectionComponent() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"
-            >
-              <ButtonIcon onClick={togglePlay} />
-            </motion.div>
+            ></motion.div>
           )}
         </AnimatePresence>
       </motion.div>
@@ -97,29 +66,7 @@ export function ModernVideoSectionComponent() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
         className="absolute bottom-7 left-6 right-6 flex justify-between items-center z-20"
-      >
-        <IconButton
-          color="primary"
-          onClick={togglePlay}
-          className="hover:bg-gray-800 transition duration-200"
-        >
-          {isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
-        </IconButton>
-        <IconButton
-          color="primary"
-          onClick={toggleMute}
-          className="hover:bg-gray-800 transition duration-200"
-        >
-          {isMuted ? <VolumeOffIcon /> : <VolumeUpIcon />}
-        </IconButton>
-        <IconButton
-          color="primary"
-          onClick={handleFullscreen}
-          className="hover:bg-gray-800 transition duration-200"
-        >
-          <FullscreenIcon />
-        </IconButton>
-      </motion.div>
+      ></motion.div>
     </section>
   );
 }
